@@ -1,52 +1,212 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+<!DOCTYPE html>
+<html lang="en">
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style rel="stylesheet" media="all">
+    /* default.css */
+    html,
+    article,
+    aside,
+    audio,
+    blockquote,
+    body,
+    dd,
+    dialog,
+    div,
+    dl,
+    dt,
+    fieldset,
+    figure,
+    footer,
+    form,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    header,
+    hgroup,
+    input,
+    li,
+    mark,
+    menu,
+    nav,
+    ol,
+    p,
+    pre,
+    section,
+    td,
+    textarea,
+    th,
+    time,
+    ul,
+    video,
+    main {
+        margin: 0;
+        padding: 0;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        -webkit-font-feature-settings: "palt";
+        font-feature-settings: "palt"
+    }
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+    address,
+    caption,
+    cite,
+    code,
+    dfn,
+    em,
+    strong,
+    th,
+    var {
+        font-style: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word
+    }
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+    table {
+        border-collapse: collapse;
+        border-spacing: 0
+    }
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
+    caption,
+    th {
+        text-align: left
+    }
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+    q:after,
+    q:before {
+        content: ""
+    }
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+    embed,
+    object {
+        vertical-align: top
+    }
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
+    hr,
+    legend {
+        display: none
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-size: 100%
+    }
+
+    abbr,
+    acronym,
+    fieldset,
+    img {
+        border: 0
+    }
+
+    li {
+        list-style-type: none
+    }
+
+    sup {
+        vertical-align: super;
+        font-size: 0.5em
+    }
+
+    img {
+        vertical-align: top
+    }
+
+    i {
+        font-style: normal
+    }
+
+    svg {
+        vertical-align: middle
+    }
+
+    article,
+    aside,
+    dialog,
+    figure,
+    footer,
+    header,
+    hgroup,
+    nav,
+    section,
+    main {
+        display: block
+    }
+
+    nav,
+    ul {
+        list-style: none
+    }
+    </style>
+   
+
+
+    <!-- jquery-3.4.1　-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/0cdf9d3e9e.js" crossorigin="anonymous"></script>
+    @vite(['resources/css/common.css'])
+
+</head>
+
+<body>
+    <div class="con_login">
+
+        <div class="overlay">
+            <div class="box_reg">
+                <p class="btn_close"><a href="/login">x</a></p>
+                <form method="POST" action="{{ route('register') }}" class="reg_form">
+                    @csrf
+                    <h2>Sign Up</h2>
+                    <p>It's quick and easy.</p>
+                    <p class="line"></p>
+                    <div class="box_input">
+                        <x-text-input placeholder="Name" id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
+                            required autofocus autocomplete="name" />
+                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                    </div>
+                    <div class="box_input">
+                        <x-text-input placeholder="Email" id="email" class="block mt-1 w-full" type="email" name="email"
+                            :value="old('email')" required autocomplete="username" />
+                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    </div>
+
+                    <div class="box_input">
+
+                        <x-text-input id="password" placeholder="Password" class="block mt-1 w-full" type="password" name="password" required
+                            autocomplete="new-password" />
+
+                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                    </div>
+
+                    <div class="box_input">
+
+                        <x-text-input id="password_confirmation" placeholder="Password confirmation" class="block mt-1 w-full" type="password"
                             name="password_confirmation" required autocomplete="new-password" />
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                    </div>
+
+                    <button class="reg_btn signup__signInButton"><span>
+                           
+                                {{ __('Register') }}
+                          
+                        </span></button>
+                </form>
+            </div>
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
+    </div>
+</body>
 
-            <x-primary-button class="ml-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+</html>

@@ -1,47 +1,186 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<!DOCTYPE html>
+<html lang="en">
 
-    <form method="POST" action="{{ route('login') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style rel="stylesheet" media="all">
+    /* default.css */
+    html,
+    article,
+    aside,
+    audio,
+    blockquote,
+    body,
+    dd,
+    dialog,
+    div,
+    dl,
+    dt,
+    fieldset,
+    figure,
+    footer,
+    form,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    header,
+    hgroup,
+    input,
+    li,
+    mark,
+    menu,
+    nav,
+    ol,
+    p,
+    pre,
+    section,
+    td,
+    textarea,
+    th,
+    time,
+    ul,
+    video,
+    main {
+        margin: 0;
+        padding: 0;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        -webkit-font-feature-settings: "palt";
+        font-feature-settings: "palt"
+    }
+
+    address,
+    caption,
+    cite,
+    code,
+    dfn,
+    em,
+    strong,
+    th,
+    var {
+        font-style: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word
+    }
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0
+    }
+
+    caption,
+    th {
+        text-align: left
+    }
+
+    q:after,
+    q:before {
+        content: ""
+    }
+
+    embed,
+    object {
+        vertical-align: top
+    }
+
+    hr,
+    legend {
+        display: none
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-size: 100%
+    }
+
+    abbr,
+    acronym,
+    fieldset,
+    img {
+        border: 0
+    }
+
+    li {
+        list-style-type: none
+    }
+
+    sup {
+        vertical-align: super;
+        font-size: 0.5em
+    }
+
+    img {
+        vertical-align: top
+    }
+
+    i {
+        font-style: normal
+    }
+
+    svg {
+        vertical-align: middle
+    }
+
+    article,
+    aside,
+    dialog,
+    figure,
+    footer,
+    header,
+    hgroup,
+    nav,
+    section,
+    main {
+        display: block
+    }
+
+    nav,
+    ul {
+        list-style: none
+    }
+    </style>
+    @vite(['resources/css/common.css', 'resources/js/common.js'])
+
+    <!-- jquery-3.4.1　-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/0cdf9d3e9e.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="con_login">
+        <div class="box_login">
+        <form method="POST" action="{{ route('login') }}" class="login_form">
         @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                <div class="box_input">
+                    <x-input-label for="email" :value="__('Email')" />
+                    <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
+                        required autofocus autocomplete="username" />
+                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                </div>
+                <div class="box_input">
+                    <x-input-label for="password" :value="__('Password')" />
+                    <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                        autocomplete="current-password" />
+                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                </div>
+                    <x-primary-button class="login_btn">
+                        {{ __('Log in') }}
+                    </x-primary-button>
+                <p class="line"></p>
+                <p class="reg_btn"><a href="/register">Create New Account</a></p>
+            </form>
         </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
+    </div>
+</body>
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ml-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+</html>
