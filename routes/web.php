@@ -33,10 +33,10 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 // user 
-// Route::prefix('home')->group(function () {
-//     // Route::get('/',[UsersController::class, 'index']);
-//     Route::get('/',[PostController::class, 'getPosts']);
-// });
+Route::prefix('home')->group(function () {
+    Route::get('/',[UsersController::class, 'index']);
+    // Route::get('/',[PostController::class, 'getPosts']);
+});
 
 // // post
 // Route::get('layouts/center', [PostController::class, 'create']);
