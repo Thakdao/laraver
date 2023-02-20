@@ -8,9 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Comments extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     protected $fillable = [
         'user_id',
         'post_id',
         'content'
     ];
+
+    public function posts(){
+        return $this->belongsTo(Post::class);
+    }
 }

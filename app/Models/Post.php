@@ -11,7 +11,17 @@ class Post extends Model
     
     protected $fillable = [
         'user_id',
-        'post_id',
         'content'
     ];
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function comment(){
+        return $this->hasMany(Comments::class);
+    }// một bài đăng thì có nhiều comment
+
+    public function likes(){
+        return $this->hasMany(Likes::class);
+    }
 }

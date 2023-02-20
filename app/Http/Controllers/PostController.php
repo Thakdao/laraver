@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
 use Auth;
 use App\Models\Post;
 use Validator;
@@ -15,21 +14,20 @@ class PostController extends Controller
     //     return view('home');
     // }
 
-    // public function store(Request $request)
-    // {
-    //     $validatedData = $request->validate([
-    //         'content' => 'required',
-    //     ]);
-        
-    //     $post = new Post;
-    //     $post->body = $request->body;
-    //     $post->save();
-    
-    //     return redirect('/home');
-    // }
+    public function store(Request $request)
+    {
+        $params = $request->all();
+        $params['user_id'] = auth()->id();
+        // dd($params);
+        // $post = Post::create($params);
 
-    // public function getPosts(){
-    //             $getposts = DB::table('posts')->get();
-    //             return view('home' , compact('getposts'));
-    //         }
+
+
+        $post = new Post;
+        $post->content = $request->content;
+        $post->user_id = auth()->id();
+        $post->save();
+    
+        return redirect('/home');
+    }
 }

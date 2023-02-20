@@ -15,4 +15,8 @@ class Users extends Model
         'password'
     ];
 
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }//mốt user thì có nhiều bài đăng
+ 
 }

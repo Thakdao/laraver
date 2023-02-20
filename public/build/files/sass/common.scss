@@ -344,10 +344,14 @@ body {
 			margin: 2em auto;
 			display: flex;
 			justify-content: space-between;
-
+			@include mq(sp){
+	flex-direction: column;
+			}
 			.box_left {
 				width: 15%;
-
+@include mq(tab_sp){
+	display: none;
+}
 				.list_fr {
 					li {
 						list-style: none;
@@ -383,7 +387,13 @@ body {
 			.box_right {
 				width: 100%;
 				max-width: 360px;
-
+@include mq(tab){
+	width: 30%;
+}
+@include mq(sp){
+	width: 30%;
+	max-width: 100%;
+}
 				h4 {
 					font-weight: 400;
 					font-size: 20px;
@@ -446,6 +456,10 @@ body {
 			.box_center {
 				width: 100%;
 				max-width: 680px;
+				@include mq(tab){
+					width: 65%;
+				}
+
 				.login_btn {
 					text-decoration: none;
 					color: #fff;
@@ -491,7 +505,39 @@ body {
 						border-top: 1px solid #eee;
 						border-bottom: 1px solid #eee;
 						margin: 0.5em 0;
+						form {
+							width: 50%;
+							button {
+								width: 100%;
+								border: none;
+								outline: none;
+								text-align: center;
+								position: relative;
+								font-size: 15px;
+								font-weight: bold;
+								cursor: pointer;
+								border-radius: 5px;
+								background-color: #fff;
+								padding: 0.5em 1em;
 
+								&:hover {
+									background-color: rgba(0, 0, 0, 0.1);
+								}
+								span {
+									position: relative;
+									padding-left: 1.5em;
+									&::before {
+										content: "\f164";
+										position: absolute;
+										left: 0;
+										top: 50%;
+										transform: translateY(-50%);
+										font-family: "Font Awesome 5 Free";
+										font-weight: 400;
+									}
+								}
+							}
+						}
 						p {
 							width: 50%;
 							padding: 0.5em 1em;
@@ -508,7 +554,6 @@ body {
 							span {
 								position: relative;
 								padding-left: 1.5em;
-
 								&::before {
 									content: "\f164";
 									position: absolute;
@@ -558,13 +603,17 @@ body {
 
 				.box_comment {
 					display: flex;
-					justify-content: space-between;
+					justify-content: flex-start;
 					align-items: center;
-
+					margin: 0.8em 0;
+					&.text_comment {
+						border-bottom: 1px solid #eee;
+						padding-bottom: 1em;
+					}
 					.avat {
 						width: 40px;
 						height: 40px;
-
+						margin-right: 1.2em;
 						img {
 							border-radius: 50%;
 						}
@@ -625,7 +674,7 @@ body {
 							font-size: 20px;
 							font-weight: 700;
 							line-height: 24px;
-							margin-bottom: .5em;
+							margin-bottom: 0.5em;
 							padding: 0px 0px 2px;
 						}
 						.btn_close {
@@ -651,7 +700,8 @@ body {
 							width: 100%;
 							height: 100%;
 
-							input,textarea {
+							input,
+							textarea {
 								width: 100%;
 								height: 100%;
 								border-radius: 20px;
@@ -660,7 +710,7 @@ body {
 								outline: none;
 								background-color: rgba(0, 0, 0, 0.1);
 							}
-							textarea{
+							textarea {
 								padding: 0.5em 1em 5em;
 								background-color: #fff;
 							}

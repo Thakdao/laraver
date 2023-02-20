@@ -4,7 +4,11 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\LikesController;
 use App\Models\Post;
+use App\Models\Users;
+use App\Models\Comments;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,10 +38,9 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 // user 
 Route::prefix('home')->group(function () {
-    Route::get('/',[UsersController::class, 'index']);
-    // Route::get('/',[PostController::class, 'getPosts']);
+    Route::get('/',[UsersController::class, 'index'])->name('home');
 });
 
-// // post
-// Route::get('layouts/center', [PostController::class, 'create']);
-// Route::post('layouts/center', [PostController::class, 'store']);
+Route::post('post/store', [PostController::class, 'store'])->name('post.store');
+Route::post('comment/store/{post}', [CommentsController::class, 'store'])->name('comment.store'); 
+Route::post('like/store/{post}', [LikesController::class, 'store'])->name('like.store'); 
