@@ -8,6 +8,17 @@ document.addEventListener("DOMContentLoaded", function (e) {
   $(".box_post .pop_post , .form_post .btn_close").click(function () {
 		$(".form_post").toggleClass("active");
 	});
+
+	$(".inner_user").click(function(){
+		$(".btn_logout").slideToggle();
+	  });
+
+	//   $( ".box_like .like" ).each(function( index ) {
+	// 	$(this).click(function(){
+	// 		$(".list_like").slideToggle();
+	// 	  });
+	//   });
+	
 // validation form login
 // const inputUsername = document.querySelector(".input-login-username");
 // const inputPassword = document.querySelector(".input-login-password");

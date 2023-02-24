@@ -1,16 +1,18 @@
 
-        <h2 class="text-lg font-medium text-gray-900">
-            {{ __('プロフィール情報') }}
-        </h2>
+      
 
-        <p class="mt-1 text-sm text-gray-600">
-            {{ __("アカウントのプロフィール情報と電子メール アドレスを更新します。") }}
-        </p>
+       
 
     <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
-
+        <h2 class="">
+            {{ __('プロフィール情報') }}
+        </h2>
+        <p class="mt-1 text-sm text-gray-600">
+            {{ __("アカウントのプロフィール情報と電子メール アドレスを更新します。") }}
+        </p>
+        <p class="line"></p>
         <div class="box_input">
             <x-input-label for="name" :value="__('名前')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />

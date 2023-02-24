@@ -150,56 +150,66 @@
     </style>
     @vite(['resources/css/common.css', 'resources/js/common.js'])
 
-    <!-- jquery-3.4.1　-->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600;1,700&display=swap"
+        rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/0cdf9d3e9e.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/014abb33b0.js" crossorigin="anonymous"></script>
+    @vite(['resources/css/common.css', 'resources/js/common.js'])
+
 </head>
 
 <body>
-    @include('layouts/header')
-    <div class="con_login">
-        <div class="box_login">
-            <form action="{{ route('update-password') }}" method="POST">
-                @csrf
-                <h2>change password</h2>
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+    <div class="container">
+
+
+        @include('layouts/header')
+        <div class="con_login">
+            <div class="box_login">
+                <form action="{{ route('update-password') }}" method="POST">
+                    @csrf
+                    <h2>パスワード変更</h2>
+                    <div class="card-body">
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @elseif (session('error'))
+                            <div class="alert alert-danger" role="alert">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+
+                        <div class="box_input">
+                            <input name="old_password" type="password"
+                                class="form-control @error('old_password') is-invalid @enderror" id="oldPasswordInput"
+                                placeholder="現在のパスワード">
+                            @error('old_password')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
-                    @elseif (session('error'))
-                        <div class="alert alert-danger" role="alert">
-                            {{ session('error') }}
+                        <div class="box_input">
+                            <input name="new_password" type="password"
+                                class="form-control @error('new_password') is-invalid @enderror" id="newPasswordInput"
+                                placeholder="新しいパスワード">
+                            @error('new_password')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
-                    @endif
+                        <div class="box_input">
+                            <input name="new_password_confirmation" type="password" class="form-control"
+                                id="confirmNewPasswordInput" placeholder="新しいパスワード">
+                        </div>
 
-                    <div class="box_input">
-                        <input name="old_password" type="password" class="form-control @error('old_password') is-invalid @enderror" id="oldPasswordInput"
-                            placeholder="Old Password">
-                        @error('old_password')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="box_input">
-                        <input name="new_password" type="password" class="form-control @error('new_password') is-invalid @enderror" id="newPasswordInput"
-                            placeholder="New Password">
-                        @error('new_password')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="box_input">
-                        <input name="new_password_confirmation" type="password" class="form-control" id="confirmNewPasswordInput"
-                            placeholder="Confirm New Password">
                     </div>
 
-                </div>
+                    <div class="card-footer">
+                        <button class="login_btn">保存</button>
+                    </div>
 
-                <div class="card-footer">
-                    <button class="login_btn">Submit</button>
-                </div>
-
-            </form>
+                </form>
+            </div>
         </div>
     </div>
     </div>

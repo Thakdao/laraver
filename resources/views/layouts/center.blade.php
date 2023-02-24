@@ -40,11 +40,17 @@
                     <span class="">{{ $item->likes()->count() }} いいね！</span>
                 </p>
                 <div class="pop_like">
-                    @foreach ($item->likes as $like)
+                   
                    <ul class="list_like">
-                    <li>{{ $like->user->name }}</li>
+                    @foreach ($item->likes as $like)
+                    <li>
+                        <p class="avat"> <img src="{{ $like->user->avatar_url }}" alt=""></p>
+                        <p>  {{ $like->user->name }}</p>
+                      
+                    </li>
+                    @endforeach
                    </ul>
-                   @endforeach
+                 
                 </div>
                 <p class="cmt">コメント{{ $item->comment()->count() }} 件</p>
             </div>
@@ -72,11 +78,13 @@
             </div>
             @foreach ($item->comment as $cmt)
                 <div class="text_comment box_comment">
+                    <p class="avat"><img src="{{ auth()->user()->avatarUrl}}" alt=""></p>
+
                     <div class="inner_cmt">
-                        <p class="avat"><img src="{{ auth()->user()->avatarUrl}}" alt=""></p>
                         <p class="name">{{ $cmt->user->name }}</p>
+                        <p>{{ $cmt->content }}</p>
                     </div>
-                    <p>{{ $cmt->content }}</p>
+                  
 
                 </div>
             @endforeach

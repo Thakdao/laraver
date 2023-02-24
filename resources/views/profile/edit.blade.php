@@ -159,15 +159,28 @@
 <body>
     <div class="container">
         @include('layouts/header')
-        <form action="{{route('profile.upload-avatar')}}" method="post" enctype="multipart/form-data">
-            @csrf
-            <input type="file" id="file" name="avatar"  >
-            <input type="submit">
-
-
-        </form>
+      
         <div class="con_login">
-            <div class="box_login">
+            <div class="box_login box_profile">
+                <form class="form_avat" action="{{route('profile.upload-avatar')}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <h2 class="">
+                        ユーザーアバター変更
+                    </h2>
+                    <p class="line">
+                    </p>
+                    <div class="inner">
+                        <p class="avat2"><img src="{{ auth()->user()->avatarUrl }}" alt=""></p>
+                        <div class="box_input">
+                            <label for="files" class="btn2">画像を選択</label> 
+                            <input type="file" id="files" name="avatar" style="visibility:hidden;" >
+                            <input class="btn" type="submit" value="変更"></div>
+                      
+                    </div>
+                  
+        
+        
+                </form>
                 @include('profile.partials.update-profile-information-form')
             </div>
 

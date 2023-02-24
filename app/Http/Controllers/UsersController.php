@@ -58,7 +58,7 @@ public function updatePassword(Request $request)
             'password' => Hash::make($request->new_password)
         ]);
 
-        return back()->with("status", "Password changed successfully!");
+        return back()->with("status", "パスワード変更されました！");
 }
 
 public function toggleFollow(Request $request){
