@@ -39,8 +39,13 @@ require __DIR__.'/auth.php';
 // user 
 Route::prefix('home')->group(function () {
     Route::get('/',[UsersController::class, 'index'])->name('home');
+    Route::post('/toggleFollow',[UsersController::class, 'toggleFollow'])->name('toggle_follow');
 });
 
 Route::post('post/store', [PostController::class, 'store'])->name('post.store');
 Route::post('comment/store/{post}', [CommentsController::class, 'store'])->name('comment.store'); 
 Route::post('like/store/{post}', [LikesController::class, 'store'])->name('like.store'); 
+Route::get('/change-password', [UsersController::class, 'changePassword'])->name('change-password');
+Route::post('/change-password', [UsersController::class, 'updatePassword'])->name('update-password');
+
+Route::post('profile/upload-avatar', [ProfileController::class, 'uploadAvatar'])->name('profile.upload-avatar');

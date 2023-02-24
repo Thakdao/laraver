@@ -24,4 +24,8 @@ class Post extends Model
     public function likes(){
         return $this->hasMany(Likes::class);
     }
+      //tạo attribute để check like
+      public function getLikedAttribute(){
+        return $this->likes()->where('user_id' , auth()->id())->exists() && auth()->id();
+    }
 }

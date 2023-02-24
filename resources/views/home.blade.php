@@ -1,3 +1,6 @@
+<?php
+$page = 'homepage';
+?>
 <!DOCTYPE html>
 <html lang="en">
 

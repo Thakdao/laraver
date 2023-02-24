@@ -8,9 +8,28 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Users;
 
 class ProfileController extends Controller
 {
+    public function uploadAvatar(Request $request){
+        $media = $request->avatar;
+        $mimeType = $media->getMimeType();
+        @list(, $mimeType) = explode('/', $mimeType);
+
+        $originalExt = $media->getClientOriginalExtension();
+        $fullPath = 'public/avatar/' . time() . '.' . $originalExt;
+
+        Storage::disk()->put($fullPath, file_get_contents($media));
+        // dd($fullPath);
+
+        Users::where('id', auth()->id())->update([
+            'avatar' =>  $fullPath,
+        ]);
+
+        return redirect()->route('home');
+    }
     /**
      * Display the user's profile form.
      */
@@ -55,6 +74,8 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('/');
+        return Redirect::to('home');
     }
+
+   
 }

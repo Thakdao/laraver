@@ -160,23 +160,23 @@
         <div class="box_login">
         <form method="POST" action="{{ route('login') }}" class="login_form">
         @csrf
+        <h2>ログイン</h2>
+        <p class="line"></p>
                 <div class="box_input">
-                    <x-input-label for="email" :value="__('Email')" />
-                    <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
+                    <x-text-input  placeholder="メールアドレス" id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
                         required autofocus autocomplete="username" />
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
                 <div class="box_input">
-                    <x-input-label for="password" :value="__('Password')" />
-                    <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                    <x-text-input placeholder="パスワード" id="password" class="block mt-1 w-full" type="password" name="password" required
                         autocomplete="current-password" />
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </div>
                     <x-primary-button class="login_btn">
-                        {{ __('Log in') }}
+                        {{ __('ログイン') }}
                     </x-primary-button>
                 <p class="line"></p>
-                <p class="reg_btn"><a href="/register">Create New Account</a></p>
+                <p class="reg_btn"><a href="/register">新しいアカウント登録</a></p>
             </form>
         </div>
         </div>

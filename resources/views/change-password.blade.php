@@ -157,23 +157,52 @@
 </head>
 
 <body>
-    <div class="container">
-        @include('layouts/header')
-        <form action="{{route('profile.upload-avatar')}}" method="post" enctype="multipart/form-data">
-            @csrf
-            <input type="file" id="file" name="avatar"  >
-            <input type="submit">
+    @include('layouts/header')
+    <div class="con_login">
+        <div class="box_login">
+            <form action="{{ route('update-password') }}" method="POST">
+                @csrf
+                <h2>change password</h2>
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @elseif (session('error'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ session('error') }}
+                        </div>
+                    @endif
 
+                    <div class="box_input">
+                        <input name="old_password" type="password" class="form-control @error('old_password') is-invalid @enderror" id="oldPasswordInput"
+                            placeholder="Old Password">
+                        @error('old_password')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="box_input">
+                        <input name="new_password" type="password" class="form-control @error('new_password') is-invalid @enderror" id="newPasswordInput"
+                            placeholder="New Password">
+                        @error('new_password')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="box_input">
+                        <input name="new_password_confirmation" type="password" class="form-control" id="confirmNewPasswordInput"
+                            placeholder="Confirm New Password">
+                    </div>
 
-        </form>
-        <div class="con_login">
-            <div class="box_login">
-                @include('profile.partials.update-profile-information-form')
-            </div>
+                </div>
 
+                <div class="card-footer">
+                    <button class="login_btn">Submit</button>
+                </div>
+
+            </form>
         </div>
     </div>
-
+    </div>
 </body>
 
 </html>

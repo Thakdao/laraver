@@ -1,24 +1,17 @@
 <div class="box_left">
     <ul class="list_fr">
-        <li><a href="#">
-                <p class="avat"><img src="{{'images/img_avata.jpg'}}" alt=""></p>
-                <p class="name">Thanh Nguyễn</p>
-            </a></li>
-        <li><a href="#">
-                <p class="avat"><img src="{{'images/img_avata.jpg'}}" alt=""></p>
-                <p class="name">Thanh Nguyễn 2 </p>
-            </a></li>
-        <li><a href="#">
-                <p class="avat"><img src="{{'images/img_avata.jpg'}}" alt=""></p>
-                <p class="name">Thanh Nguyễn 3</p>
-            </a></li>
-        <li><a href="#">
-                <p class="avat"><img src="{{'images/img_avata.jpg'}}" alt=""></p>
-                <p class="name">Thanh Nguyễn 4</p>
-            </a></li>
-        <li><a href="#">
-                <p class="avat"><img src="{{'images/img_avata.jpg'}}" alt=""></p>
-                <p class="name">Thanh Nguyễn 5</p>
-            </a></li>
+        @foreach ($follwer as $follow)
+        <li>
+                <p class="avat"><img src="{{$follow?->toUser?->avatar_url}}" alt=""></p>
+                {{-- {{dd($follow)}} --}}
+                <p class="name">{{$follow?->toUser?->name}}</p>
+                <form action="{{route('toggle_follow')}}" method="post">
+                    @csrf
+                    <input type="hidden" name="to_user_id" value="{{$follow?->toUser?->id}}">
+                    <button type="submit">unlf</button>
+                  </form>
+            </li>
+            @endforeach
+        
     </ul>
 </div>

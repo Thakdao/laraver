@@ -167,23 +167,23 @@
                 <p class="btn_close"><a href="/login">x</a></p>
                 <form method="POST" action="{{ route('register') }}" class="reg_form">
                     @csrf
-                    <h2>Sign Up</h2>
-                    <p>It's quick and easy.</p>
+                    <h2>アカウント登録</h2>
+                    <p>簡単に登録できます。</p>
                     <p class="line"></p>
                     <div class="box_input">
-                        <x-text-input placeholder="Name" id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
+                        <x-text-input placeholder="名前" id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
                             required autofocus autocomplete="name" />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
                     <div class="box_input">
-                        <x-text-input placeholder="Email" id="email" class="block mt-1 w-full" type="email" name="email"
+                        <x-text-input placeholder="メールアドレス" id="email" class="block mt-1 w-full" type="email" name="email"
                             :value="old('email')" required autocomplete="username" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
 
                     <div class="box_input">
 
-                        <x-text-input id="password" placeholder="Password" class="block mt-1 w-full" type="password" name="password" required
+                        <x-text-input id="password" placeholder="パスワード" class="block mt-1 w-full" type="password" name="password" required
                             autocomplete="new-password" />
 
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
@@ -191,7 +191,7 @@
 
                     <div class="box_input">
 
-                        <x-text-input id="password_confirmation" placeholder="Password confirmation" class="block mt-1 w-full" type="password"
+                        <x-text-input id="password_confirmation" placeholder="パスワード確認" class="block mt-1 w-full" type="password"
                             name="password_confirmation" required autocomplete="new-password" />
 
                         <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
@@ -199,7 +199,7 @@
 
                     <button class="reg_btn signup__signInButton"><span>
                            
-                                {{ __('Register') }}
+                                {{ __('アカウント登録') }}
                           
                         </span></button>
                 </form>
